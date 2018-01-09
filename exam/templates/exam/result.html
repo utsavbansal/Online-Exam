@@ -1,0 +1,64 @@
+{% extends 'base.html'%}
+{% block tittle %}Result{% endblock %}
+<head>
+	<style>
+	table, th, td {
+		border: 2px solid black;
+	}
+	</style>
+</head>
+{% block content %}
+
+	
+	<style>
+	table, th, td {
+		border: 2px solid black;
+	}
+	</style>
+
+	
+	<p><strong><font size="20">{{result}} {{candidate.first_name}} {{candidate.last_name}} your score is {{candidate.marks}} marks</font></strong><br>
+		<font size="5">Following are your details:</font>
+	
+	</p>
+	
+	
+	<table style="width:50%" >
+		<tr>
+			<th>First Name:</th>
+			<td>{{candidate.first_name}}</td>
+		</tr>
+		<tr>
+			<th>Last Name:</th>
+			<td>{{candidate.last_name}}</td>
+		</tr>
+		<tr>
+			<th>Age:</th>
+			<td>{{candidate.age}}</td>
+		</tr>
+		<tr>
+			<th>Course:</th>
+			<td>{{candidate.course}}</td>
+		</tr>
+		<tr>
+			<th>Address:</th>
+			<td>{{candidate.address}}</td>
+		</tr>
+		<tr>
+			<th>Qualification:</th>
+			<td>{{candidate.qualification}}</td>
+		</tr>
+		<tr>
+			<th><b>Total Marks:</b></th>
+			<td>{{candidate.marks}}</td>
+		</tr>
+	</table>
+{% endblock %}
+
+{% block javascript %}
+<script>
+{% if not user.is_authenticated %}
+$("ul.nav.navbar-nav.navbar-right").css("display","none");
+{% endif %}
+</script>
+{% endblock %}

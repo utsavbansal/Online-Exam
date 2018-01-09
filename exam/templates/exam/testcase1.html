@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+{% block tittle %}TestCase 1{% endblock %}
+{% block visited %}
+	a:visited
+					{
+						color:#FF0000
+					}
+{% endblock %}					
+{% block content %}
+
+{% if error_message %}
+	<h3>{{error_message}}</h3>
+
+{% endif %}
+
+	
+		{% if question_list %}
+		<h3><b>Test Case</b></h3>
+			{% if error_message %}<p><strong>{{ error_message}}</strong></p>
+			{% endif %}
+			<form action="{% url 'exam:result' %}" method="post" >
+				{% csrf_token %}
+				<ol>
+				{% for question in question_list %}
+					<li><a href="{% url 'exam:testcase_detail' question.id %}">{{question.question_text}}</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>{{question.marks}} Marks</b>
+					
+				{% endfor %}
+				</ol>
+			<input type="submit" value="Submit Test" class="btn btn-default">
+			<h1><p style="color:blue">**The questions marked Red are visited by you</p></h1>
+		{% else %}
+			<h3>No Questions available</h3>
+		{% endif %}
+{% endblock %}
+
+{% block javascript %}
+<script>
+{% if not user.is_authenticated %}
+$("ul.nav.navbar-nav.navbar-right").css("display","none");
+{% endif %}
+</script>
+{% endblock %}

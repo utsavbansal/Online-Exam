@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% block tittle %}Question_Details{% endblock %}
+{% block content %}
+
+{% if question %}
+	{% if error_message %}<p style="color:red"><strong>{{ error_message}}</strong></p>
+	{% endif %}
+<p><strong><b><h3>{{question.question_text}}</h3></b></strong></p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>{{question.marks}} Marks</b>
+<form action="{% url 'exam:store_answer' question.id %}" method="post" >
+	{% csrf_token %}
+	<ol>
+	{% for choice in question.choice_set.all %}
+		<li><input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}" />
+			<label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br/>
+	{% endfor %}
+	</ol>	
+	<input type="submit" value="Submit Answer" class="btn btn-default">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="{% url 'exam:testcase1' %}" class="btn btn-default">Back</a>
+</form>
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+<script>
+{% if not user.is_authenticated %}
+$("ul.nav.navbar-nav.navbar-right").css("display","none");
+{% endif %}
+</script>
+{% endblock %}

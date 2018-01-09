@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% block tittle %}Home{% endblock %}
+{% block content %}
+	<p><strong><h3>Guidelines for Online Exam.</h3></strong></p>
+		<ul>
+			<li>Before beginning the exam:
+				<ol>
+					<li>Make sure you have a good internet connection.
+					<li>Log out of Blacboard and then back in to Blackboard before you begin.This will help with connectivity issues.
+					<li>If you are taking the exam late in the day, it is recommended that you reboot your computer before beginning to free up memory resources from other programs on your computer.
+					<li>Shut down all Instant messaging tools (Skype,AIM,MSN Messenger) and Email programs as they can conflict with the Test.
+					<li>Enter the Test by clinking the link below.
+					<li>Do not use any other internet browser.
+					<li>Maximise your browser window before at starting the test.
+					<li>Minimising the browser window during the exam can prevent the submission of your exam.
+					<li>When you begin the exam click the link only ONCE to launch the test . Double Clicking can lock the test.
+				</ol>
+			<li>During the Exam:
+				<ol>
+					<li>Do not resize(minimise) the browser during test.
+					<li>Never click the "Back" button on the browser.This will take you out of the test and  prevent test from tracking your selected answers.
+					<li>Avoid using scroll button on your mouse if present.
+					<li>Click the "submit" button to submit your exam. Do not press "Enter" on the keyboard	to submit the exam.
+				</ol>
+		</ul>
+    <p><strong>Links for Test.</strong></p>
+    {% if testcase %}
+	<ul>
+		<li><a href= "http://127.0.0.1:8000/exam/testcase1/">Testcase 1</a></li>
+	{% else %}
+		<p> No Testcases available</p>
+	{% endif %}
+{% endblock %}
